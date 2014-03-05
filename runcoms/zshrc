@@ -1,14 +1,16 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+# Z configuration
+. `brew --prefix`/etc/profile.d/z.sh
 
+# virtualenv configuration
+export WORKON_HOME=$HOME/.virtualenv
+source /usr/local/bin/virtualenvwrapper.sh
+
+# Generate secure, random passwords
+alias pw="pwgen --secure 64 | perl -ne 'chomp and print' | pbcopy"
+
+export PATH=/Applications/Android\ Studio.app/sdk/platform-tools/:$PATH
